@@ -1,20 +1,27 @@
 <?php
+/**
+ * Конфигурация для системы email рассылки ApexNodes
+ */
 
-
-define('SMTP_API_KEY', 'ваш токен api от smpt.bz');
+// Настройки API smtp.bz
+define('SMTP_API_KEY', 'OsefDYwJGvvQpAsxu0Si1Q6KW0eyjUEYdJ5H');
 define('SMTP_API_URL', 'https://api.smtp.bz/v1/smtp/send');
 
+// Настройки базы данных для отслеживания отправок
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'email_tracker');
 define('DB_USER', 'root');
-define('DB_PASS', ''); 
+define('DB_PASS', ''); // В XAMPP обычно пароль пустой
 
+// Настройки рассылки
 define('EMAILS_PER_HOUR', 50);
-define('SENDER_EMAIL', 'Почта от кого идет');
-define('SENDER_NAME', 'Название от кого письмо');
+define('SENDER_EMAIL', 'mailing@svortex.ru');
+define('SENDER_NAME', 'Svortex Malling');
 
+// Путь к исходной базе данных ApexNodes
 define('SOURCE_DB_FILE', __DIR__ . '/ApexNodes-DataBase-By-Stacey.sql');
 
+// Настройки письма
 define('EMAIL_SUBJECT', 'Новый хостинг для Minecraft и кодинга — быстрее, дешевле, удобнее! 🖥️⛏️');
 define('EMAIL_HTML_TEMPLATE', '
 <html>
@@ -91,13 +98,16 @@ define('EMAIL_HTML_TEMPLATE', '
 </html>
 ');
 
+// Лимиты и таймауты
 define('CURL_TIMEOUT', 30);
 define('MAX_RETRIES', 3);
 define('RETRY_DELAY', 5); // секунд
 
+// Логирование
 define('LOG_FILE', __DIR__ . '/logs/email_log.txt');
 define('ERROR_LOG_FILE', __DIR__ . '/logs/error_log.txt');
 
+// Создаем директорию для логов
 if (!file_exists(__DIR__ . '/logs')) {
     mkdir(__DIR__ . '/logs', 0755, true);
 }

@@ -189,7 +189,9 @@ class Database {
     }
     
 
-    public function searchEmails($query, $status = null) {
+    public function searchEmails($query, $status = null, $perPage = 50, $page = 1) {
+        $offset = ($page - 1) * $perPage;
+        
         $sql = "SELECT * FROM email_queue WHERE (email LIKE ? OR username LIKE ?)";
         $params = ["%$query%", "%$query%"];
         
@@ -198,7 +200,7 @@ class Database {
             $params[] = $status;
         }
         
-        $sql .= " ORDER BY created_at DESC LIMIT 100";
+        $sql .= " ORDER BY created_at DESC LIMIT " . (int)$perPage . " OFFSET " . (int)$offset;
         
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
@@ -253,7 +255,14 @@ class Database {
             '%account is disabled%',
             '%invalid mailbox%',
             '%is unavailable%',
-            '%no such user%'
+            '%no such user%',
+            '%user is over quota%',
+            '%relay access denied%',
+            '%dns error%',
+            '%domain name not found%',
+            '%connection refused%',
+            '%connection timed out%',
+            '%network error%'
         ];
         
         foreach ($permanentErrorPatterns as $pattern) {

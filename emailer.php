@@ -192,8 +192,8 @@ class EmailSender {
     }
     
 
-    public function searchEmails($query, $status = null) {
-        return $this->db->searchEmails($query, $status);
+    public function searchEmails($query, $status = null, $perPage = 50, $page = 1) {
+        return $this->db->searchEmails($query, $status, $perPage, $page);
     }
     
 
