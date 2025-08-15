@@ -98,17 +98,15 @@ define('EMAIL_HTML_TEMPLATE', '
 </html>
 ');
 
-// Лимиты и таймауты
 define('CURL_TIMEOUT', 30);
 define('MAX_RETRIES', 3);
-define('RETRY_DELAY', 5); // секунд
+define('RETRY_DELAY', 5); 
 
-// Логирование
 define('LOG_FILE', __DIR__ . '/logs/email_log.txt');
 define('ERROR_LOG_FILE', __DIR__ . '/logs/error_log.txt');
 
-// Создаем директорию для логов
 if (!file_exists(__DIR__ . '/logs')) {
     mkdir(__DIR__ . '/logs', 0755, true);
 }
 ?>
+
